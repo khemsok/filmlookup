@@ -1,7 +1,7 @@
 <div align="center">
 <h1>Film Look Up 🍿</h1>
 <a href="https://filmlookup.now.sh/"><img src="static/images/screenshot1.png"></a>
-<a href="https://filmlookup.now.sh/"><img src="static/images/screenshot1.png"></a>
+<a href="https://filmlookup.now.sh/"><img src="static/images/screenshot2.png"></a>
 <sub>Simple film look up 🔥</sub>
 </div>
 
