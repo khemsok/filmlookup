@@ -45,7 +45,7 @@ function MoviePage({ match, handleBackgroundChange }) {
           >
             <img
               src={`https://image.tmdb.org/t/p/original${movieData.poster_path}`}
-              style={{ width: "100%" }}
+              style={{ width: "100%", maxHeight: "550px" }}
             />
           </Grid>
           <Grid item md={7} xs={12}>
