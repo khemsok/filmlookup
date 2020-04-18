@@ -32,8 +32,11 @@ export default function footer() {
   return (
     <div
       style={{
+        position: "absolute",
+        bottom: "0",
         textAlign: "center",
         padding: "30px",
+        width: "100%",
       }}
     >
       <Typography variant="subtitle2">

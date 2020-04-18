@@ -70,27 +70,35 @@ function App() {
           <CssBaseline />
           <Router>
             <Container maxWidth="lg">
-              <Nav />
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                  component={(props) => <Homepage {...props} />}
-                />
-                <Route
-                  exact
-                  path="/movie/:movieid"
-                  component={(props) => (
-                    <MoviePage
-                      {...props}
-                      handleBackgroundChange={(bgUrl) =>
-                        handleBackgroundChange(bgUrl)
-                      }
-                    />
-                  )}
-                />
-              </Switch>
-              <Footer />
+              <div
+                style={{
+                  position: "relative",
+                  minHeight: "100vh",
+                  paddingBottom: "130px",
+                }}
+              >
+                <Nav />
+                <Switch>
+                  <Route
+                    exact
+                    path="/"
+                    component={(props) => <Homepage {...props} />}
+                  />
+                  <Route
+                    exact
+                    path="/movie/:movieid"
+                    component={(props) => (
+                      <MoviePage
+                        {...props}
+                        handleBackgroundChange={(bgUrl) =>
+                          handleBackgroundChange(bgUrl)
+                        }
+                      />
+                    )}
+                  />
+                </Switch>
+                <Footer />
+              </div>
             </Container>
           </Router>
         </ThemeProvider>
