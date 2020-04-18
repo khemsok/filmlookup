@@ -14,8 +14,6 @@ import Grid from "@material-ui/core/Grid";
 function MoviePage({ match, handleBackgroundChange }) {
   const [movieData, setMovieData] = useState({});
 
-  console.log(handleBackgroundChange);
-
   useEffect(() => {
     fetchMovieData();
   }, []);
@@ -106,7 +104,6 @@ function MoviePage({ match, handleBackgroundChange }) {
         </Grid>
       </>
     );
-  console.log(movieData);
 
   return (
     <>
