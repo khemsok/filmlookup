@@ -10,6 +10,7 @@ import Footer from "./components/footer";
 // Pages
 import Homepage from "./pages/homepage";
 import MoviePage from "./pages/moviepage";
+import CatchAll from "./pages/catchall";
 
 // Mui
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -96,6 +97,7 @@ function App() {
                       />
                     )}
                   />
+                  <Route component={CatchAll} />
                 </Switch>
                 <Footer />
               </div>

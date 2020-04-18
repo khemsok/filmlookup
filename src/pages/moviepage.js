@@ -13,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 
 function MoviePage({ match, handleBackgroundChange }) {
   const [movieData, setMovieData] = useState({});
+  const [statusCode, setStatusCode] = useState(true);
 
   useEffect(() => {
     fetchMovieData();
@@ -26,12 +27,21 @@ function MoviePage({ match, handleBackgroundChange }) {
     const movieUrl = `https://api.themoviedb.org/3/movie/${match.params.movieid}?api_key=67dd87ea202627ab42b62941829e7dec&language=en-US`;
     const response = await fetch(movieUrl);
     const data = await response.json();
+    if (data.status_code) {
+      setStatusCode(false);
+    }
     setMovieData(data);
   };
 
   const displayMovie =
     Object.keys(movieData).length === 0 ? (
-      <CircularProgress />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <CircularProgress />
+      </div>
+    ) : !statusCode ? (
+      <Typography variant="subtitle1" align="center">
+        404 Not Found 💔
+      </Typography>
     ) : (
       <>
         <Grid container spacing={4}>
