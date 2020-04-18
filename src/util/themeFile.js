@@ -24,7 +24,6 @@ const themeConfig = {
     },
     subtitle2: {
       fontFamily: "Roboto Condensed, sans-serif",
-      fontWeight: "700",
     },
     body1: {
       fontFamily: "Roboto Condensed, sans-serif",

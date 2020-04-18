@@ -62,7 +62,7 @@ function Homepage({ history }) {
         renderInput={(params) => (
           <TextField
             {...params}
-            label="Search Movie..."
+            label="Search Movies..."
             onChange={handleChangeText}
           />
         )}

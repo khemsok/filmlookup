@@ -52,7 +52,11 @@ function MoviePage({ match, handleBackgroundChange }) {
             <Typography variant="h3">
               {movieData.title.toUpperCase()}
             </Typography>
-            <Typography variant="subtitle1" color="primary">
+            <Typography
+              style={{ marginBottom: "20px" }}
+              variant="subtitle1"
+              color="primary"
+            >
               {movieData.tagline}
             </Typography>
             <Typography>{movieData.overview}</Typography>
