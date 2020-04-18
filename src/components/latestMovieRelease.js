@@ -60,7 +60,7 @@ function LatestMovieRelease() {
     const mapMovies = movieListData
       .filter((data) => data.poster_path !== null)
       .map((movie, index) => {
-        const movieUrl = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
+        const movieUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
         return (
           <Grid item md={4} xs={12} key={index}>
