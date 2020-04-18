@@ -3,9 +3,6 @@ import React, { useState, useEffect } from "react";
 import { numberWithCommas } from "../util/helper";
 
 // MUI
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -54,6 +51,7 @@ function MoviePage({ match, handleBackgroundChange }) {
             <img
               src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
               style={{ width: "100%", maxHeight: "550px" }}
+              alt={movieData.title}
             />
           </Grid>
           <Grid item md={7} xs={12}>

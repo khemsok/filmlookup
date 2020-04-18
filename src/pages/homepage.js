@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
-
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 // Components
-import SearchBox from "../components/searchBox";
 import LatestMovieRelease from "../components/latestMovieRelease";
 
 // MUI
-import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";

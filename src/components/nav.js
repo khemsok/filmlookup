@@ -5,8 +5,6 @@ import { Link, withRouter } from "react-router-dom";
 
 // MUI Icons
 import IconButton from "@material-ui/core/IconButton";
-import NightsStayIcon from "@material-ui/icons/NightsStay";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 function nav({ history }) {

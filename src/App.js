@@ -18,22 +18,6 @@ import { ThemeProvider } from "@material-ui/styles";
 import { darkMode } from "./util/themeFile";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeStyles } from "@material-ui/core/styles";
-
-// const useStyles = makeStyles({
-//   background: {
-//     background: (props) =>
-//       `linear-gradient(rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 1) 60%), url(https://image.tmdb.org/t/p/original${props.defaultBg})`,
-//     backgroundSize: "cover",
-//     backgroundRepeat: "no-repeat",
-//     maxHeight: "200vh",
-//     "&:before": {
-//       backgroundImage:
-//         "linear-gradient(rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 1) 60%",
-//       minHeight: "100vh",
-//     },
-//   },
-// });
 
 function App() {
   const darkTheme = createMuiTheme(darkMode);
@@ -42,7 +26,6 @@ function App() {
     localStorage.getItem("backgroundImg") || "/xFxk4vnirOtUxpOEWgA1MCRfy6J.jpg";
 
   const [defaultBg, setDefaultBg] = useState(currentBackground);
-  // const classes = useStyles({ defaultBg });
 
   useEffect(() => {
     localStorage.setItem("backgroundImg", defaultBg);
