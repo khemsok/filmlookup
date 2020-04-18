@@ -16,7 +16,7 @@ function Homepage({ history }) {
   const [movieOptions, setMovieOptions] = useState([]);
 
   const fetchMovieOptions = async (title) => {
-    if (title.length >= 4) {
+    if (title.length >= 3) {
       const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=67dd87ea202627ab42b62941829e7dec&language=en-US&query=${title}&page=1&include_adult=false`;
 
       const response = await fetch(searchUrl);
@@ -37,7 +37,7 @@ function Homepage({ history }) {
   };
 
   const parseMovieLabel = (movieData) => {
-    if (movieData.release_data !== undefined) {
+    if (movieData.release_date !== undefined) {
       if (
         (movieData.release_date !== null) &
         (movieData.release_date.length !== 0)
@@ -53,11 +53,6 @@ function Homepage({ history }) {
 
   return (
     <Container maxWidth="md">
-      {/* <Typography variant="h2" align="center">
-        MOVIE REPO 🎬
-      </Typography> */}
-      {/* <SearchBox /> */}
-      {/* <TextField label="Search Movie..." style={{ marginBottom: "25px" }} /> */}
       <Autocomplete
         style={{ width: "250px", marginBottom: "25px" }}
         freeSolo
