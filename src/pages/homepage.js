@@ -38,7 +38,7 @@ function Homepage({ history }) {
     if (
       (movieData.release_date !== null) &
       (movieData.release_date.length !== 0) &
-      (movie.release_date !== undefined)
+      (movieData.release_date !== undefined)
     ) {
       return `${movieData.title} (${movieData.release_date.slice(0, 4)})`;
     } else {
