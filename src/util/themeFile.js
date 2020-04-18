@@ -19,11 +19,12 @@ const themeConfig = {
       fontWeight: "700",
     },
     subtitle1: {
-      fontFamily: "Roboto Mono, monospace",
+      fontFamily: "Roboto Condensed, sans-serif",
       fontWeight: "700",
     },
     subtitle2: {
-      fontFamily: "Roboto Mono, monospace",
+      fontFamily: "Roboto Condensed, sans-serif",
+      fontWeight: "700",
     },
     body1: {
       fontFamily: "Roboto Condensed, sans-serif",

@@ -73,25 +73,25 @@ function MoviePage({ match, handleBackgroundChange }) {
                 .join(", ")}
             </Typography>
             <Grid container style={{ marginTop: "25px" }}>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={6}>
                 <Typography>Original Release</Typography>
                 <Typography variant="subtitle1" color="primary">
                   {movieData.release_date}
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={6} style={{ marginBottom: "10px" }}>
                 <Typography>Run Time</Typography>
                 <Typography variant="subtitle1" color="primary">
                   {movieData.runtime} MINS
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={6}>
                 <Typography>Box Office</Typography>
                 <Typography variant="subtitle1" color="primary">
                   ${numberWithCommas(movieData.revenue)}
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={6}>
                 <Typography>Ratings</Typography>
                 <Typography variant="subtitle1" color="primary">
                   {movieData.vote_average}

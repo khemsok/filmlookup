@@ -98,19 +98,19 @@ function LatestMovieRelease() {
                     top: "0",
                     color: "white",
                     right: "0",
-                    marginRight: "20px",
-                    marginTop: "20px",
-                    padding: "5px",
+                    marginRight: "0px",
+                    marginTop: "10px",
+                    padding: "6px",
                     minWidth: "50px",
                     backgroundColor: "rgba(0, 0, 0, 0.85)",
-                    borderRadius: "10px",
+                    borderRadius: "0px",
                     textAlign: "center",
                   }}
                 >
                   {movie.vote_average === 0 ? (
-                    <Typography>Not Yet Rated</Typography>
+                    <Typography variant="subtitle2">Not Yet Rated</Typography>
                   ) : (
-                    <Typography>
+                    <Typography variant="subtitle2">
                       <span>
                         <StarIcon
                           style={{
@@ -159,7 +159,7 @@ function LatestMovieRelease() {
   return (
     <>
       <Typography variant="subtitle1" style={{ marginBottom: "20px" }}>
-        Latest Movie Release
+        LATEST RELEASES
       </Typography>
       {displayMovieList}
     </>
