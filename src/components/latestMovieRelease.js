@@ -11,7 +11,7 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
 
-// MUI Styles
+// MUI Style
 import { makeStyles } from "@material-ui/core/styles";
 
 // MUI Icon
