@@ -13,7 +13,7 @@ function Homepage({ history }) {
 
   const fetchMovieOptions = async (title) => {
     if (title.length >= 2) {
-      const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=67dd87ea202627ab42b62941829e7dec&language=en-US&query=${title}&page=1&include_adult=false`;
+      const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${title}&page=1&include_adult=false`;
 
       const response = await fetch(searchUrl);
       const data = await response.json();

@@ -21,7 +21,7 @@ function MoviePage({ match, handleBackgroundChange }) {
   }
 
   const fetchMovieData = async () => {
-    const movieUrl = `https://api.themoviedb.org/3/movie/${match.params.movieid}?api_key=67dd87ea202627ab42b62941829e7dec&language=en-US`;
+    const movieUrl = `https://api.themoviedb.org/3/movie/${match.params.movieid}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
     const response = await fetch(movieUrl);
     const data = await response.json();
     if (data.status_code) {

@@ -36,7 +36,7 @@ function LatestMovieRelease() {
   const [infiniteScrollStatus, setInfiniteScrollStatus] = useState(true);
 
   const fetchMovieData = async () => {
-    const apiUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=67dd87ea202627ab42b62941829e7dec&language=en-US&page=${pageCounter}&region=US`;
+    const apiUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${pageCounter}&region=US`;
 
     const response = await fetch(apiUrl);
     const data = await response.json();
