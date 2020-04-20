@@ -30,6 +30,17 @@ const themeConfig = {
       fontSize: "1em",
     },
   },
+  overrides: {
+    MuiIconButton: {
+      root: {
+        transition: ".25s ease-in",
+        "&:hover": {
+          // backgroundColor: "black",
+          color: "#F9F5C8",
+        },
+      },
+    },
+  },
 };
 
 export const darkMode = {
