@@ -20,7 +20,6 @@ import StarIcon from "@material-ui/icons/Star";
 function LatestMovieRelease() {
   const [sortByItem, setSortByItem] = useState("popular");
   const [movieList, setMovieList] = useState([]);
-  const [pageMax, setPageMax] = useState(-1);
   const [infiniteScrollStatus, setInfiniteScrollStatus] = useState(true);
   const [transitionStatus, setTransitionStatus] = useState(true);
 
@@ -38,6 +37,7 @@ function LatestMovieRelease() {
 
     setMovieList(data.results);
     setTransitionStatus(true);
+    setInfiniteScrollStatus(true);
   };
 
   const fetchMovieData = async (page) => {
@@ -46,9 +46,6 @@ function LatestMovieRelease() {
 
     const response = await fetch(apiUrl);
     const data = await response.json();
-    if (pageMax !== -1) {
-      setPageMax(data.total_pages);
-    }
 
     if (pageToUse <= data.total_pages) {
       setMovieList([...movieList, ...data.results]);
