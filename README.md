@@ -8,7 +8,7 @@
 ### Features 🎨
 
 - **🔎 Search Film**: User can search their favorite films with autocomplete features
-- **🥊 Latest Releases**: Shows latest film that has just been released with infinite scrolling features
+- **🥊 Categories**: Sort movies by different categories with infinite scrolling features
 - **🎥 Movie Stats**: Display descriptions + data on how the movie did
 
 ### Technologies 🔨
