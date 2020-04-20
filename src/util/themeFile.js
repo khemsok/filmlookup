@@ -7,11 +7,11 @@ const themeConfig = {
       fontWeight: "700",
     },
     h2: {
-      fontFamily: "Roboto Mono, monospace",
+      fontFamily: "Roboto, sans-serif",
       fontWeight: "700",
     },
     h3: {
-      fontFamily: "Roboto, sans-serif",
+      fontFamily: "Roboto Condensed, sans-serif",
       fontWeight: "700",
     },
     h4: {
@@ -19,7 +19,7 @@ const themeConfig = {
       fontWeight: "700",
     },
     subtitle1: {
-      fontFamily: "Roboto Condensed, sans-serif",
+      fontFamily: "Roboto, sans-serif",
       fontWeight: "700",
     },
     subtitle2: {
@@ -37,7 +37,7 @@ export const darkMode = {
   palette: {
     type: "dark",
     primary: {
-      main: "#7FFFD4",
+      main: "#F9F5C8",
     },
     background: {
       default: "#000000",

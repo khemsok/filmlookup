@@ -7,6 +7,9 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import Slide from "@material-ui/core/Slide";
+import Fade from "@material-ui/core/Fade";
+import Zoom from "@material-ui/core/Zoom";
 
 function MoviePage({ match, handleBackgroundChange }) {
   const [movieData, setMovieData] = useState({});
@@ -42,73 +45,82 @@ function MoviePage({ match, handleBackgroundChange }) {
     ) : (
       <>
         <Grid container spacing={4}>
-          <Grid
-            item
-            md={5}
-            xs={12}
-            style={{ display: "flex", justifyContent: "center" }}
+          <Zoom in={true} direction="right" timeout={500}>
+            <Grid
+              item
+              md={5}
+              xs={12}
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
+                style={{ width: "100%", maxHeight: "550px" }}
+                alt={movieData.title}
+              />
+            </Grid>
+          </Zoom>
+          <Fade
+            in={true}
+            direction="right"
+            timeout={500}
+            style={{ transitionDelay: "500ms" }}
           >
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
-              style={{ width: "100%", maxHeight: "550px" }}
-              alt={movieData.title}
-            />
-          </Grid>
-          <Grid item md={7} xs={12}>
-            <Typography variant="h3">
-              {movieData.title.toUpperCase()}
-            </Typography>
-            <Typography
-              style={{ marginBottom: "20px" }}
-              variant="subtitle1"
-              color="primary"
-            >
-              {movieData.tagline}
-            </Typography>
-            <Typography>{movieData.overview}</Typography>
-            <Typography
-              variant="subtitle1"
-              color="primary"
-              style={{ marginTop: "20px" }}
-            >
-              {movieData.genres
-                .slice(0, 4)
-                .map((element) => element.name)
-                .join(", ")}
-            </Typography>
-            <Typography>
-              {movieData.production_companies
-                .slice(0, 3)
-                .map((element) => element.name)
-                .join(", ")}
-            </Typography>
-            <Grid container style={{ marginTop: "25px" }}>
-              <Grid item xs={6}>
-                <Typography>Original Release</Typography>
-                <Typography variant="subtitle1" color="primary">
-                  {movieData.release_date}
-                </Typography>
-              </Grid>
-              <Grid item xs={6} style={{ marginBottom: "10px" }}>
-                <Typography>Run Time</Typography>
-                <Typography variant="subtitle1" color="primary">
-                  {movieData.runtime} MINS
-                </Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography>Box Office</Typography>
-                <Typography variant="subtitle1" color="primary">
-                  ${numberWithCommas(movieData.revenue)}
-                </Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography>Ratings</Typography>
-                <Typography variant="subtitle1" color="primary">
-                  {movieData.vote_average}
-                </Typography>
+            <Grid item md={7} xs={12}>
+              <Typography variant="h3">
+                {movieData.title.toUpperCase()}
+              </Typography>
+              <Typography
+                style={{ marginBottom: "20px" }}
+                variant="subtitle1"
+                color="primary"
+              >
+                {movieData.tagline}
+              </Typography>
+              <Typography>{movieData.overview}</Typography>
+              <Typography
+                variant="subtitle1"
+                color="primary"
+                style={{ marginTop: "20px" }}
+              >
+                {movieData.genres
+                  .slice(0, 4)
+                  .map((element) => element.name)
+                  .join(", ")}
+              </Typography>
+              <Typography>
+                {movieData.production_companies
+                  .slice(0, 3)
+                  .map((element) => element.name)
+                  .join(", ")}
+              </Typography>
+              <Grid container style={{ marginTop: "25px" }}>
+                <Grid item xs={6}>
+                  <Typography>Original Release</Typography>
+                  <Typography variant="subtitle1" color="primary">
+                    {movieData.release_date}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6} style={{ marginBottom: "10px" }}>
+                  <Typography>Run Time</Typography>
+                  <Typography variant="subtitle1" color="primary">
+                    {movieData.runtime} MINS
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography>Box Office</Typography>
+                  <Typography variant="subtitle1" color="primary">
+                    ${numberWithCommas(movieData.revenue)}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography>Ratings</Typography>
+                  <Typography variant="subtitle1" color="primary">
+                    {movieData.vote_average}
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
+          </Fade>
         </Grid>
       </>
     );

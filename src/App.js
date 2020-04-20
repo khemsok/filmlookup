@@ -41,6 +41,7 @@ function App() {
         backgroundImage: `url(https://image.tmdb.org/t/p/original${defaultBg})`,
         backgroundSize: "cover",
         maxHeight: "200vh",
+        transition: "background .25s ease-in",
       }}
     >
       <div
