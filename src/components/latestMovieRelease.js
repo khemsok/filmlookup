@@ -11,18 +11,38 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Fade from "@material-ui/core/Fade";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 // MUI Icon
 import StarIcon from "@material-ui/icons/Star";
 
 function LatestMovieRelease() {
+  const [sortByItem, setSortByItem] = useState("popular");
   const [movieList, setMovieList] = useState([]);
   const [pageMax, setPageMax] = useState(-1);
   const [infiniteScrollStatus, setInfiniteScrollStatus] = useState(true);
+  const [transitionStatus, setTransitionStatus] = useState(true);
+
+  const handleChange = (event) => {
+    setSortByItem(event.target.value);
+    setTransitionStatus(false);
+    setMovieList([]);
+  };
+
+  const fetchMovieDataSortBy = async () => {
+    const apiUrl = `https://api.themoviedb.org/3/movie/${sortByItem}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1&region=US`;
+
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    setMovieList(data.results);
+    setTransitionStatus(true);
+  };
 
   const fetchMovieData = async (page) => {
     const pageToUse = page === undefined ? 1 : page;
-    const apiUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${pageToUse}&region=US`;
+    const apiUrl = `https://api.themoviedb.org/3/movie/${sortByItem}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${pageToUse}&region=US`;
 
     const response = await fetch(apiUrl);
     const data = await response.json();
@@ -40,8 +60,8 @@ function LatestMovieRelease() {
   };
 
   useEffect(() => {
-    fetchMovieData();
-  }, []);
+    fetchMovieDataSortBy();
+  }, [sortByItem]);
 
   const mapMovieList = (movieListData) => {
     const mapMovies = movieListData
@@ -50,7 +70,7 @@ function LatestMovieRelease() {
         const movieUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
         return (
-          <Fade in={true} timeout={500}>
+          <Fade in={transitionStatus} timeout={500}>
             <Grid item md={4} xs={12} key={index}>
               <Card style={{ position: "relative" }}>
                 <Link
@@ -138,11 +158,33 @@ function LatestMovieRelease() {
       </>
     );
 
+  const title =
+    sortByItem === "popular"
+      ? "POPULAR"
+      : sortByItem === "now_playing"
+      ? "NOW PLAYING"
+      : sortByItem === "top_rated"
+      ? "TOP RATED"
+      : "UPCOMING";
+
   return (
     <>
-      <Typography variant="subtitle1" style={{ marginBottom: "20px" }}>
-        LATEST RELEASES
-      </Typography>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "20px",
+        }}
+      >
+        <Typography variant="subtitle1">{title}</Typography>
+        <Select value={sortByItem} onChange={handleChange}>
+          <MenuItem value={"popular"}>Popular</MenuItem>
+          <MenuItem value={"now_playing"}>Now Playing</MenuItem>
+          <MenuItem value={"top_rated"}>Top Rated</MenuItem>
+          <MenuItem value={"upcoming"}>Upcoming</MenuItem>
+        </Select>
+      </div>
+
       {displayMovieList}
     </>
   );
