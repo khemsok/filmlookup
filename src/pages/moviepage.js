@@ -19,7 +19,7 @@ function MoviePage({ match, handleBackgroundChange }) {
     fetchMovieData();
   }, []);
 
-  if (Object.keys(movieData).length !== 0) {
+  if ((Object.keys(movieData).length !== 0) & statusCode) {
     handleBackgroundChange(movieData.backdrop_path);
   }
 
