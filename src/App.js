@@ -47,8 +47,8 @@ function App() {
       <div
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 1) 60%",
-          minHeight: "100vh",
+            "linear-gradient(rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 1) 90%",
+          height: "100vh",
           // backdropFilter: "blur(15px)",
         }}
       >
