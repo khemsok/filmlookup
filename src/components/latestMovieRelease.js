@@ -10,34 +10,19 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import Slide from "@material-ui/core/Slide";
-
-// MUI Style
-import { makeStyles } from "@material-ui/core/styles";
+import Fade from "@material-ui/core/Fade";
 
 // MUI Icon
 import StarIcon from "@material-ui/icons/Star";
 
-const useStyles = makeStyles((theme) => ({
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: "#fff",
-  },
-  cover: {
-    width: 151,
-  },
-}));
-
 function LatestMovieRelease() {
-  const classes = useStyles();
-
   const [movieList, setMovieList] = useState([]);
-  const [pageCounter, setPageCounter] = useState(1);
   const [pageMax, setPageMax] = useState(-1);
   const [infiniteScrollStatus, setInfiniteScrollStatus] = useState(true);
 
-  const fetchMovieData = async () => {
-    const apiUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${pageCounter}&region=US`;
+  const fetchMovieData = async (page) => {
+    const pageToUse = page === undefined ? 1 : page;
+    const apiUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${pageToUse}&region=US`;
 
     const response = await fetch(apiUrl);
     const data = await response.json();
@@ -45,10 +30,11 @@ function LatestMovieRelease() {
       setPageMax(data.total_pages);
     }
 
-    if (pageCounter <= data.total_pages) {
-      setPageCounter(pageCounter + 1);
+    if (pageToUse <= data.total_pages) {
       setMovieList([...movieList, ...data.results]);
-    } else {
+    }
+
+    if (pageToUse === data.total_pages) {
       setInfiniteScrollStatus(false);
     }
   };
@@ -64,50 +50,54 @@ function LatestMovieRelease() {
         const movieUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
         return (
-          <Grid item md={4} xs={12} key={index}>
-            <Card style={{ position: "relative" }}>
-              <Link
-                to={`/movie/${movie.id}`}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <CardActionArea>
-                  <CardMedia component="img" height="375" image={movieUrl} />
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "0",
-                      color: "white",
-                      right: "0",
-                      marginRight: "0px",
-                      marginTop: "10px",
-                      padding: "6px",
-                      minWidth: "50px",
-                      backgroundColor: "rgba(0, 0, 0, 0.85)",
-                      borderRadius: "0px",
-                      textAlign: "center",
-                    }}
-                  >
-                    {movie.vote_average === 0 ? (
-                      <Typography variant="subtitle2">Not Yet Rated</Typography>
-                    ) : (
-                      <Typography variant="subtitle2">
-                        <span>
-                          <StarIcon
-                            style={{
-                              fontSize: "1em",
-                              verticalAlign: "text-top",
-                            }}
-                            color="primary"
-                          />
-                        </span>{" "}
-                        {movie.vote_average}/10
-                      </Typography>
-                    )}
-                  </div>
-                </CardActionArea>
-              </Link>
-            </Card>
-          </Grid>
+          <Fade in={true} timeout={500}>
+            <Grid item md={4} xs={12} key={index}>
+              <Card style={{ position: "relative" }}>
+                <Link
+                  to={`/movie/${movie.id}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <CardActionArea>
+                    <CardMedia component="img" height="375" image={movieUrl} />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "0",
+                        color: "white",
+                        right: "0",
+                        marginRight: "0px",
+                        marginTop: "10px",
+                        padding: "6px",
+                        minWidth: "50px",
+                        backgroundColor: "rgba(0, 0, 0, 0.85)",
+                        borderRadius: "0px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {movie.vote_average === 0 ? (
+                        <Typography variant="subtitle2">
+                          Not Yet Rated
+                        </Typography>
+                      ) : (
+                        <Typography variant="subtitle2">
+                          <span>
+                            <StarIcon
+                              style={{
+                                fontSize: "1em",
+                                verticalAlign: "text-top",
+                              }}
+                              color="primary"
+                            />
+                          </span>{" "}
+                          {movie.vote_average}/10
+                        </Typography>
+                      )}
+                    </div>
+                  </CardActionArea>
+                </Link>
+              </Card>
+            </Grid>
+          </Fade>
         );
       });
     return mapMovies;
@@ -115,15 +105,27 @@ function LatestMovieRelease() {
 
   const displayMovieList =
     movieList.length === 0 ? (
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <CircularProgress />
       </div>
     ) : (
       <>
         <InfiniteScroll
+          pageStart={1}
           loadMore={fetchMovieData}
           loader={
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "25px",
+              }}
+            >
               <CircularProgress />
             </div>
           }
