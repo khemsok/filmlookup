@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // Components
-import LatestMovieRelease from "../components/latestMovieRelease";
+import Categories from "../components/categories";
 
 // MUI
 import Container from "@material-ui/core/Container";
@@ -66,7 +66,7 @@ function Homepage({ history }) {
           />
         )}
       />
-      <LatestMovieRelease />
+      <Categories />
     </Container>
   );
 }
