@@ -17,7 +17,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 // MUI Icon
 import StarIcon from "@material-ui/icons/Star";
 
-function LatestMovieRelease() {
+function Categories() {
   const [sortByItem, setSortByItem] = useState("popular");
   const [movieList, setMovieList] = useState([]);
   const [infiniteScrollStatus, setInfiniteScrollStatus] = useState(true);
@@ -187,4 +187,4 @@ function LatestMovieRelease() {
   );
 }
 
-export default LatestMovieRelease;
+export default Categories;

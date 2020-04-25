@@ -40,7 +40,6 @@ function App() {
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original${defaultBg})`,
         backgroundSize: "cover",
-        maxHeight: "200vh",
         transition: "background .25s ease-in",
       }}
     >
@@ -49,7 +48,7 @@ function App() {
           backgroundImage:
             "linear-gradient(rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 1) 90%",
           height: "100vh",
-          // backdropFilter: "blur(15px)",
+          // backdropFilter: "blur(3px)",
         }}
       >
         <ThemeProvider theme={darkTheme}>
