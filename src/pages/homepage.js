@@ -60,6 +60,7 @@ function Homepage({ history }) {
         onChange={handleSelected}
         renderInput={(params) => (
           <TextField
+            style={{ fontSize: "16px" }}
             {...params}
             label="Search Movies..."
             onChange={handleChangeText}
