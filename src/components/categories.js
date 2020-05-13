@@ -67,8 +67,8 @@ function Categories() {
         const movieUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
         return (
-          <Fade in={transitionStatus} timeout={500}>
-            <Grid item md={4} xs={12}>
+          <Grid item md={4} xs={12} key={index}>
+            <Fade in={transitionStatus} timeout={500}>
               <Card style={{ position: "relative" }}>
                 <Link
                   to={`/movie/${movie.id}`}
@@ -113,16 +113,21 @@ function Categories() {
                   </CardActionArea>
                 </Link>
               </Card>
-            </Grid>
-          </Fade>
+            </Fade>
+          </Grid>
         );
       });
-    return mapMovies;
+    return (
+      <Grid container spacing={8}>
+        {mapMovies}
+      </Grid>
+    );
   };
 
   const displayMovieList =
     movieList.length === 0 ? (
       <div
+        key={0}
         style={{
           display: "flex",
           justifyContent: "center",
@@ -131,28 +136,24 @@ function Categories() {
         <CircularProgress />
       </div>
     ) : (
-      <>
-        <InfiniteScroll
-          pageStart={1}
-          loadMore={fetchMovieData}
-          loader={
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "25px",
-              }}
-            >
-              <CircularProgress />
-            </div>
-          }
-          hasMore={infiniteScrollStatus}
-        >
-          <Grid container spacing={8}>
-            {mapMovieList(movieList)}
-          </Grid>
-        </InfiniteScroll>
-      </>
+      <InfiniteScroll
+        pageStart={1}
+        loadMore={fetchMovieData}
+        loader={
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "25px",
+            }}
+          >
+            <CircularProgress />
+          </div>
+        }
+        hasMore={infiniteScrollStatus}
+      >
+        {mapMovieList(movieList)}
+      </InfiniteScroll>
     );
 
   const title =
