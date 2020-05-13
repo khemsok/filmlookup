@@ -34,7 +34,6 @@ function MoviePage({ match, handleBackgroundChange }) {
       setStatusCode(false);
     }
     setMovieData(data);
-    console.log(data);
     const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
     const trailerChannel = "UCi8e0iOVk1fEOogdfu4YgfA";
     const query = data.original_title;
@@ -50,6 +49,7 @@ function MoviePage({ match, handleBackgroundChange }) {
         },
       })
       .then((res) => {
+        console.log(res);
         if (res.data.items.length !== 0) {
           setVideoId(res.data.items[0].id.videoId);
         }
@@ -69,7 +69,7 @@ function MoviePage({ match, handleBackgroundChange }) {
       <>
         <Fade in={true} timeout={1000}>
           <div>
-            <Typography variant="h2">
+            <Typography variant="h3">
               {movieData.title.toUpperCase()}
             </Typography>
             <Typography
