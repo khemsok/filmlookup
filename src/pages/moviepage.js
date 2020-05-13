@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import { numberWithCommas } from "../util/helper";
+import MovieTrailer from "../components/movieTrailer";
 
 // MUI
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -14,6 +16,7 @@ import Zoom from "@material-ui/core/Zoom";
 function MoviePage({ match, handleBackgroundChange }) {
   const [movieData, setMovieData] = useState({});
   const [statusCode, setStatusCode] = useState(true);
+  const [videoId, setVideoId] = useState("");
 
   useEffect(() => {
     fetchMovieData();
@@ -31,6 +34,26 @@ function MoviePage({ match, handleBackgroundChange }) {
       setStatusCode(false);
     }
     setMovieData(data);
+    console.log(data);
+    const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
+    const trailerChannel = "UCi8e0iOVk1fEOogdfu4YgfA";
+    const query = data.original_title;
+    const url = "https://www.googleapis.com/youtube/v3/search";
+
+    axios
+      .get(url, {
+        params: {
+          key: apiKey,
+          channelId: trailerChannel,
+          part: "snippet",
+          q: `${query} trailer`,
+        },
+      })
+      .then((res) => {
+        if (res.data.items.length !== 0) {
+          setVideoId(res.data.items[0].id.videoId);
+        }
+      });
   };
 
   const displayMovie =
@@ -44,39 +67,37 @@ function MoviePage({ match, handleBackgroundChange }) {
       </Typography>
     ) : (
       <>
+        <Fade in={true} timeout={1000}>
+          <div>
+            <Typography variant="h2">
+              {movieData.title.toUpperCase()}
+            </Typography>
+            <Typography
+              style={{ marginBottom: "20px" }}
+              variant="subtitle1"
+              color="primary"
+            >
+              {movieData.tagline}
+            </Typography>
+          </div>
+        </Fade>
+
         <Grid container spacing={4}>
           <Zoom in={true} direction="right" timeout={500}>
             <Grid
               item
-              md={5}
+              md={4}
               xs={12}
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
                 style={{ width: "100%", maxHeight: "550px" }}
                 alt={movieData.title}
               />
-            </Grid>
-          </Zoom>
-          <Fade
-            in={true}
-            direction="right"
-            timeout={500}
-            style={{ transitionDelay: "500ms" }}
-          >
-            <Grid item md={7} xs={12}>
-              <Typography variant="h3">
-                {movieData.title.toUpperCase()}
-              </Typography>
-              <Typography
-                style={{ marginBottom: "20px" }}
-                variant="subtitle1"
-                color="primary"
-              >
-                {movieData.tagline}
-              </Typography>
-              <Typography>{movieData.overview}</Typography>
               <Typography
                 variant="subtitle1"
                 color="primary"
@@ -93,6 +114,21 @@ function MoviePage({ match, handleBackgroundChange }) {
                   .map((element) => element.name)
                   .join(", ")}
               </Typography>
+            </Grid>
+          </Zoom>
+          <Fade
+            in={true}
+            direction="right"
+            timeout={500}
+            style={{ transitionDelay: "500ms" }}
+          >
+            <Grid item md={7} xs={12}>
+              <MovieTrailer videoId={videoId} />
+              <Typography variant="h4" color="primary">
+                Overview
+              </Typography>
+              <Typography>{movieData.overview}</Typography>
+
               <Grid container style={{ marginTop: "25px" }}>
                 <Grid item xs={6}>
                   <Typography>Original Release</Typography>
@@ -127,7 +163,7 @@ function MoviePage({ match, handleBackgroundChange }) {
 
   return (
     <>
-      <Container maxWidth="md">{displayMovie}</Container>
+      <Container maxWidth="lg">{displayMovie}</Container>
     </>
   );
 }
