@@ -67,8 +67,8 @@ function Categories() {
         const movieUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
         return (
-          <Fade in={transitionStatus} timeout={500}>
-            <Grid item md={4} xs={12} key={index}>
+          <Fade in={transitionStatus} timeout={500} key={index}>
+            <Grid item md={4} xs={12}>
               <Card style={{ position: "relative" }}>
                 <Link
                   to={`/movie/${movie.id}`}
