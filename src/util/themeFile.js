@@ -15,7 +15,7 @@ const themeConfig = {
       fontWeight: "700",
     },
     h4: {
-      fontFamily: "Roboto Mono, monospace",
+      fontFamily: "Roboto Condensed, sans-serif",
       fontWeight: "700",
     },
     subtitle1: {
