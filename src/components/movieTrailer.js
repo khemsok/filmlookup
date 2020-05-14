@@ -8,7 +8,7 @@ function MovieTrailer({ videoId }) {
     maxHeight: "550px",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
+      autoplay: 0,
     },
   };
 
