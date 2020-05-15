@@ -123,7 +123,11 @@ function MoviePage({ match, handleBackgroundChange }) {
           >
             <Grid item md={7} xs={12}>
               <MovieTrailer videoId={videoId} />
-              <Typography variant="h4" color="primary">
+              <Typography
+                variant="h4"
+                color="primary"
+                style={{ marginTop: "5px" }}
+              >
                 Overview
               </Typography>
               <Typography>{movieData.overview}</Typography>
