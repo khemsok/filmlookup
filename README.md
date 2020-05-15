@@ -9,6 +9,7 @@
 
 - **🔎 Search Film**: User can search their favorite films with autocomplete features
 - **🥊 Categories**: Sort movies by different categories with infinite scrolling features
+- **🎬 Trailer**: Show movie trailer
 - **🎥 Movie Stats**: Display descriptions + data on how the movie did
 
 ### Technologies 🔨
@@ -16,6 +17,7 @@
 - **🌐 React JS**: Front End
 - **⚡React Router**: Page Routing
 - **🍿 [TMDB](https://www.themoviedb.org/?language=en-US)**: API to fetch the data
+- **📼 [Youtube](https://developers.google.com/youtube/v3)**: API to fetch movie trailer
 
 ### Developed by [Khem Sok](https://github.com/khemsok) 🧐
 
