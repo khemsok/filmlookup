@@ -42,13 +42,12 @@ function MoviePage({ match, handleBackgroundChange }) {
       .get(url, {
         params: {
           key: apiKey,
-          channelId: trailerChannel,
+          // channelId: trailerChannel,
           part: "snippet",
-          q: `${query} trailer`,
+          q: `${query} movie trailer ${data.release_date.slice(0, 4)}`,
         },
       })
       .then((res) => {
-        console.log(res);
         if (res.data.items.length !== 0) {
           setVideoId(res.data.items[0].id.videoId);
         }
