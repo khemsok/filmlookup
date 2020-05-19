@@ -35,7 +35,9 @@ function MoviePage({ match, handleBackgroundChange }) {
     setMovieData(data);
     const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
     const trailerChannel = "UCi8e0iOVk1fEOogdfu4YgfA";
-    const query = data.original_title;
+    const title = data.original_title;
+    const release_date = data.release_date.slice(0, 4);
+    document.title = `${title} (${release_date})`;
     const url = "https://www.googleapis.com/youtube/v3/search";
 
     axios
@@ -44,7 +46,7 @@ function MoviePage({ match, handleBackgroundChange }) {
           key: apiKey,
           // channelId: trailerChannel,
           part: "snippet",
-          q: `${query} movie trailer ${data.release_date.slice(0, 4)}`,
+          q: `${title} movie trailer ${release_date}`,
         },
       })
       .then((res) => {
