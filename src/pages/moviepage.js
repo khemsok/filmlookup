@@ -29,31 +29,33 @@ function MoviePage({ match, handleBackgroundChange }) {
     const movieUrl = `https://api.themoviedb.org/3/movie/${match.params.movieid}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
     const response = await fetch(movieUrl);
     const data = await response.json();
+
     if (data.status_code) {
       setStatusCode(false);
+    } else {
+      const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
+      const trailerChannel = "UCi8e0iOVk1fEOogdfu4YgfA";
+      const title = data.original_title;
+      const release_date = data.release_date.slice(0, 4);
+      document.title = `${title} (${release_date})`;
+      const url = "https://www.googleapis.com/youtube/v3/search";
+
+      axios
+        .get(url, {
+          params: {
+            key: apiKey,
+            // channelId: trailerChannel,
+            part: "snippet",
+            q: `${title} movie trailer ${release_date}`,
+          },
+        })
+        .then((res) => {
+          if (res.data.items.length !== 0) {
+            setVideoId(res.data.items[0].id.videoId);
+          }
+        });
     }
     setMovieData(data);
-    const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-    const trailerChannel = "UCi8e0iOVk1fEOogdfu4YgfA";
-    const title = data.original_title;
-    const release_date = data.release_date.slice(0, 4);
-    document.title = `${title} (${release_date})`;
-    const url = "https://www.googleapis.com/youtube/v3/search";
-
-    axios
-      .get(url, {
-        params: {
-          key: apiKey,
-          // channelId: trailerChannel,
-          part: "snippet",
-          q: `${title} movie trailer ${release_date}`,
-        },
-      })
-      .then((res) => {
-        if (res.data.items.length !== 0) {
-          setVideoId(res.data.items[0].id.videoId);
-        }
-      });
   };
 
   const displayMovie =
