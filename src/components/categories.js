@@ -51,7 +51,7 @@ function Categories() {
       setMovieList([...movieList, ...data.results]);
     }
 
-    if (pageToUse === data.total_pages) {
+    if (pageToUse >= data.total_pages) {
       setInfiniteScrollStatus(false);
     }
   };
